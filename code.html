@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 <
 <head>
-    <title>App Name: A Coding Project By Channing Robertson</title>
+    <title>One Hunnit: A Coding Project By Channing Robertson</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +25,7 @@
     <!--=== Nav Section ===-->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="#" class="d-inline-block align-text-top" width="30" height="24">App Logo</a>
+            <a class="navbar-brand" href="#"><img src="#" class="d-inline-block align-text-top" width="30" height="24">One Hunnit</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,13 +54,71 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container py-5 px-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for App Name</h2>
+            <h2 class="border-1 border-bottom border-dark">One Hunnit</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        //call hello world
-                        function helloworld(){
-                            alert("hello world");
+                    
+                        //get values from the page
+                        function getValues(){
+                            //get values from the page
+                            let startValue = document.getElementById("startValue").value;
+                            let endValue = document.getElementById("endValue").value;
+                            
+
+                            //parse into Integers
+                            startValue = parseInt(startValue);
+                            endValue = parseInt(endValue);
+
+                            if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+
+                                //we call generateNumbers
+                                let numbers = generateNumbers(startValue, endValue);
+
+                                //we call displayNumbers
+                                displayNumbers(numbers);
+
+                            }else{
+                                alert("You must enter integers");
+                            }
+                        }
+
+                        //generate numbers from the startValue to the endValue
+                        //logic function(s) 
+
+                        function generateNumbers(sValue, eValue){
+                            let numbers = [];
+
+                            //we want to get all numbers from start to end
+                            for(let index = sValue; index <= eValue; index ++){
+                                numbers.push(index)
+                            }
+                            return numbers;
+                        }
+
+                        //display numbers and mark the even numbers bold
+                        //display or view functions
+                        function displayNumbers(numbers){
+
+                            let templateRows = "";
+
+                            for (let index = 0; index < numbers.length; index++) {
+
+                                let className = "even";
+                                let number = numbers[index];
+
+                                if(number % 2 == 0){
+                                    className = "even";
+                                }
+                                else{
+                                    className = "odd";
+                                }
+                                
+                                //This does not render correctly with prism
+                                templateRows += `<tr><td class="${className}" >${number}</td></tr>`;
+                            }
+
+                            document.getElementById("results").innerHTML = templateRows;
                         }
                     </code>
                     </pre>
